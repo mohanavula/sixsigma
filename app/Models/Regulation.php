@@ -11,7 +11,4 @@ class Regulation extends Model
     protected $keyType = 'string';
     protected $primaryKey = 'regulation_code';
 
-    protected $attributes = [
-        'last_year' => null,
-    ];
 }

@@ -21,3 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'AuthController@login');
 Route::middleware('auth:api')->post('/register', 'AuthController@register');
 Route::middleware('auth:api')->post('/logout', 'AuthController@logout');
+
+Route::get('/regulations/{regulation_code}/specializations', 'RegulationController@specializations');
+Route::post('/regulations/{regulation_code}/specializations', 'RegulationController@storeSpecializations');
