@@ -80,8 +80,6 @@ class AcademicTables extends Migration
             $table->unsignedBigInteger('regulation_id')->index();
             $table->string('short_name', Constants::TITLE_SHORT_LENGTH)->unique();
             $table->string('name', Constants::TITLE_LENGTH);
-            $table->unsignedBigInteger('duration'); // in months
-            $table->unsignedBigInteger('credits');
             $table->unsignedBigInteger('sequence_number');
             $table->boolean('in_force')->default(false);
             $table->timestamps();
@@ -141,18 +139,34 @@ class AcademicTables extends Migration
         });
 
         /**
+         * Table to model subject category. Eg: PCC
+         */
+        Schema::create('subject_categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('short_name')->unique();
+            $table->string('name');
+        });
+
+        /**
          * Table to model curriculum. This is master table
          */
         Schema::create('instruction_schemes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('specialization_id');
-            $table->unsignedBigInteger('sequence_number');
             $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('subject_category_id');
             $table->unsignedBigInteger('subject_offering_type_id');
+            $table->json('subjects');
+            $table->json('scheme');
+            $table->unsignedBigInteger('sequence_number');
             $table->timestamps();
             $table->foreign('subject_offering_type_id', 'f_instruction_schemes_subject_offering_type_id')
                 ->references('id')
                 ->on('subject_offering_types')
+                ->onDelete('cascade');
+            $table->foreign('subject_category_id', 'f_instruction_schemes_subject_category_id')
+                ->references('id')
+                ->on('subject_categories')
                 ->onDelete('cascade');
             $table->foreign('semester_id', 'f_instruction_schemes_semester_id')
                 ->references('id')
@@ -195,9 +209,10 @@ class AcademicTables extends Migration
             $table->dropForeign('f_instruction_schemes_subjects_instruction_scheme_id');
             $table->dropForeign('f_instruction_schemes_subjects_subject_id');
         });
-
+        
         Schema::table('instruction_schemes', function (Blueprint $table) {
             $table->dropForeign('f_instruction_schemes_subject_offering_type_id');
+            $table->dropForeign('f_instruction_schemes_subject_category_id');
             $table->dropForeign('f_instruction_schemes_semester_id');
         });
 
