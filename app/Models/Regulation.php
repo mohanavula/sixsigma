@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Regulation extends Model
 {
     //
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected $primaryKey = 'regulation_code';
+    public function program() {
+        return $this->belongsTo('App\Models\Program');
+    }
+
+    public function semesters()
+    {
+        return $this->hasMany('App\Models\Semester');
+    }
+
+    
 
 }

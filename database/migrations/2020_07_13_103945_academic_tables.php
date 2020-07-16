@@ -156,8 +156,8 @@ class AcademicTables extends Migration
             $table->unsignedBigInteger('semester_id');
             $table->unsignedBigInteger('subject_category_id');
             $table->unsignedBigInteger('subject_offering_type_id');
-            $table->json('subjects');
-            $table->json('scheme');
+            $table->longText('subjects');
+            $table->longText('scheme');
             $table->unsignedBigInteger('sequence_number');
             $table->timestamps();
             $table->foreign('subject_offering_type_id', 'f_instruction_schemes_subject_offering_type_id')

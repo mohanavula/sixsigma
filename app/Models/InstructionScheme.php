@@ -18,4 +18,14 @@ class InstructionScheme extends Model
     public function subject_offering_type() {
         return $this->belongsTo('App\Models\SubjectOfferingType');
     }
+
+    public function semester()
+    {
+        return $this->belongsTo('App\Models\Semester');
+    }
+
+    public function specialization()
+    {
+        return $this->belongsTo('App\Models\Specialization');
+    }
 }

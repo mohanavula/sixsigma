@@ -429,6 +429,7 @@ class DatabaseSeeder extends Seeder
         /**
          * table: instruction_schemes
          */
+        
         $ce11_id = DB::table('instruction_schemes')->insertGetId([
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_1_id,
@@ -501,7 +502,7 @@ class DatabaseSeeder extends Seeder
 
         $ce21_id = DB::table('instruction_schemes')->insertGetId([
             'specialization_id' => $ce_id,
-            'semester_id' => $r18ug_1_id,
+            'semester_id' => $r18ug_2_id,
             'subject_category_id' => $bsc_id,
             'subjects' => json_encode(['1821201']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
@@ -511,7 +512,7 @@ class DatabaseSeeder extends Seeder
 
         $ce17_id = DB::table('instruction_schemes')->insertGetId([
             'specialization_id' => $ce_id,
-            'semester_id' => $r18ug_1_id,
+            'semester_id' => $r18ug_2_id,
             'subject_category_id' => $hsmc_id,
             'subjects' => json_encode(['182202']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),

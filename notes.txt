@@ -1,2 +1,13 @@
 Mysql json reference
 https://scotch.io/tutorials/working-with-json-in-mysql
+
+
+.env settings
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sixsigma
+DB_USERNAME=root
+DB_PASSWORD=
+
+PASSPORT_CLIENT_SECRET=ZyRiHBXkO4Z5mpsLcgQVfaw4rs9Slf7JIitDCJsR
