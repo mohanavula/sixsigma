@@ -15,7 +15,7 @@ class RegulationsController extends Controller
     public function get_regulation($regulation_id) {
         if (is_numeric($regulation_id)) {
             return Regulation::with('program')->findOrFail($regulation_id);
-        } elseif (is_string($regulation_id)) {
+        } else {
             return Regulation::with('program')->where('short_name', $regulation_id)->firstOrFail();
         }
     }
@@ -24,8 +24,28 @@ class RegulationsController extends Controller
     {
         if (is_numeric($regulation_id)) {
             return Regulation::findOrFail($regulation_id)->semesters;
-        } elseif (is_string($regulation_id)) {
+        } else {
             return Regulation::where('short_name', $regulation_id)->firstOrFail()->semesters;
+        }
+    }
+
+    public function get_instruction_scheme($regulation_id, $semester_id = null)
+    {
+        if (is_numeric($regulation_id)) {
+            $semesters = Regulation::findOrFail($regulation_id)->semesters;
+        } else {
+            $semesters = Regulation::where('short_name', $regulation_id)->firstOrFail()->semesters;
+        }
+
+        if (isset($semester_id)) {
+            if ($semesters->contains('sequence_number', '=', $semester_id))
+                return $semesters->find($semester_id)->instruction_scheme;
+            else
+                return response(["message" => "Scheme cannot be found"], 400);
+        } else {
+            return $semesters->map(function($s) {
+                return $s->instruction_scheme;
+            });
         }
     }
 
@@ -41,10 +61,12 @@ class RegulationsController extends Controller
 
         $regulation = Regulation::findOrFail($regulation_code);
         $specializations = json_decode($regulation->specializations);
+        
         if ($specializations == null) $specializations = [];
         $keys = array_map(function($t) {
             return strtoupper($t->specialization_code);
         }, $specializations);
+
         if (array_search(strtoupper($request->specialization_code), $keys)) {
             return response("Duplicate specialization code", 409);
         }
