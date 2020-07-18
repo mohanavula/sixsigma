@@ -10,4 +10,8 @@ class Subject extends Model
     {
         return $this->belongsTo('App\Models\Department');
     }
+
+    public function instruction_schemes() {
+        return $this->belongsToMany(InstructionScheme::class);
+    }
 }

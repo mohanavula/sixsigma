@@ -80,7 +80,7 @@ class AcademicTables extends Migration
             $table->unsignedBigInteger('regulation_id')->index();
             $table->string('short_name', Constants::TITLE_SHORT_LENGTH)->unique();
             $table->string('name', Constants::TITLE_LENGTH);
-            $table->unsignedBigInteger('sequence_number');
+            $table->unsignedBigInteger('semester_number');
             $table->boolean('in_force')->default(false);
             $table->timestamps();
             $table->foreign('regulation_id', 'f_semesters_regulation_id')
@@ -156,7 +156,7 @@ class AcademicTables extends Migration
             $table->unsignedBigInteger('semester_id');
             $table->unsignedBigInteger('subject_category_id');
             $table->unsignedBigInteger('subject_offering_type_id');
-            $table->longText('subjects');
+            // $table->longText('subjects');
             $table->longText('scheme');
             $table->unsignedBigInteger('sequence_number');
             $table->timestamps();
@@ -177,12 +177,13 @@ class AcademicTables extends Migration
         /**
          * Table to model curriculum. This is join table b/w instruction_schemes and subjects
          */
-        Schema::create('instruction_schemes_subjects', function (Blueprint $table) {
+        Schema::create('instruction_scheme_subject', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('instruction_scheme_id');
             $table->unsignedBigInteger('subject_id');
             $table->timestamps();
-            $table->primary(['instruction_scheme_id', 'subject_id'], 'pk_instruction_scheme_id_subject_id');
-            $table->foreign('instruction_scheme_id', 'f_instruction_schemes_subjects_instruction_scheme_id')
+            $table->unique(['instruction_scheme_id', 'subject_id'], 'u_instruction_scheme_id_subject_id');
+            $table->foreign('instruction_scheme_id', 'f_instruction_scheme_subject_instruction_scheme_id')
                 ->references('id')
                 ->on('instruction_schemes')
                 ->onDelete('cascade');
@@ -200,20 +201,20 @@ class AcademicTables extends Migration
      */
     public function down()
     {
-        Schema::table('specializations', function (Blueprint $table) {
-            $table->dropForeign('f_specializations_department_id');
-            $table->dropForeign('f_specializations_program_id');
-        });
-
-        Schema::table('instruction_schemes_subjects', function (Blueprint $table) {
-            $table->dropForeign('f_instruction_schemes_subjects_instruction_scheme_id');
-            $table->dropForeign('f_instruction_schemes_subjects_subject_id');
+        Schema::table('instruction_scheme_subject', function (Blueprint $table) {
+            $table->dropForeign('f_instruction_scheme_subject_instruction_scheme_id');
+            $table->dropForeign('f_instruction_scheme_subject_subject_id');
         });
         
         Schema::table('instruction_schemes', function (Blueprint $table) {
             $table->dropForeign('f_instruction_schemes_subject_offering_type_id');
             $table->dropForeign('f_instruction_schemes_subject_category_id');
             $table->dropForeign('f_instruction_schemes_semester_id');
+        });
+
+        Schema::table('specializations', function (Blueprint $table) {
+            $table->dropForeign('f_specializations_department_id');
+            $table->dropForeign('f_specializations_program_id');
         });
 
         Schema::table('subjects', function (Blueprint $table) {
@@ -224,19 +225,20 @@ class AcademicTables extends Migration
             $table->dropForeign('f_semesters_regulation_id');
         });
 
-        Schema::table('programs', function (Blueprint $table) {
-            $table->dropForeign('f_programs_program_level_id');
-        });
-
         Schema::table('regulations', function (Blueprint $table) {
             $table->dropForeign('f_regulations_program_id');
         });
         
-        Schema::dropIfExists('specializations');
-        Schema::dropIfExists('instruction_schemes_subjects');
+        Schema::table('programs', function (Blueprint $table) {
+            $table->dropForeign('f_programs_program_level_id');
+        });
+        
+        Schema::dropIfExists('instruction_scheme_subject');
         Schema::dropIfExists('instruction_schemes');
-        Schema::dropIfExists('subject_offering_types');
+        Schema::dropIfExists('subject_catgories');
+        Schema::dropIfExists('specializations');
         Schema::dropIfExists('subjects');
+        Schema::dropIfExists('subject_offering_types');
         Schema::dropIfExists('semesters');
         Schema::dropIfExists('regulations');
         Schema::dropIfExists('programs');

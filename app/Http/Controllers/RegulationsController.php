@@ -29,7 +29,7 @@ class RegulationsController extends Controller
         }
     }
 
-    public function get_instruction_scheme($regulation_id, $semester_id = null)
+    public function get_instruction_scheme($regulation_id, $semester_number = null)
     {
         if (is_numeric($regulation_id)) {
             $semesters = Regulation::findOrFail($regulation_id)->semesters;
@@ -37,14 +37,14 @@ class RegulationsController extends Controller
             $semesters = Regulation::where('short_name', $regulation_id)->firstOrFail()->semesters;
         }
 
-        if (isset($semester_id)) {
-            if ($semesters->contains('sequence_number', '=', $semester_id))
-                return $semesters->find($semester_id)->instruction_scheme;
+        if (isset($semester_number)) {
+            if ($semesters->contains('semester_number', '=', $semester_number))
+                return $semesters->firstWhere('semester_number', $semester_number)->instruction_scheme->load('subjects');
             else
-                return response(["message" => "Scheme cannot be found"], 400);
+                return response(["message" => "Scheme for semester: " . $semester_number . " not found"], 400);
         } else {
             return $semesters->map(function($s) {
-                return $s->instruction_scheme;
+                return $s->instruction_scheme->load('subjects');
             });
         }
     }

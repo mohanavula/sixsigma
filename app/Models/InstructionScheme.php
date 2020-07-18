@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class InstructionScheme extends Model
 {
     protected $casts = [
-        'subjects' => 'array',
         'scheme' => 'array',
     ];
 
@@ -19,13 +18,15 @@ class InstructionScheme extends Model
         return $this->belongsTo('App\Models\SubjectOfferingType');
     }
 
-    public function semester()
-    {
+    public function semester() {
         return $this->belongsTo('App\Models\Semester');
     }
 
-    public function specialization()
-    {
+    public function specialization() {
         return $this->belongsTo('App\Models\Specialization');
+    }
+
+    public function subjects() {
+        return $this->belongsToMany(Subject::class);
     }
 }

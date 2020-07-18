@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '1 Sem',
             'name' => 'First semester',
-            'sequence_number' => 1,
+            'semester_number' => 1,
             'in_force' => true
         ]);
 
@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '2 Sem',
             'name' => 'Second semester',
-            'sequence_number' => 2,
+            'semester_number' => 2,
             'in_force' => true
         ]);
 
@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '3 Sem',
             'name' => 'Third semester',
-            'sequence_number' => 3,
+            'semester_number' => 3,
             'in_force' => true
         ]);
 
@@ -153,7 +153,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '4 Sem',
             'name' => 'Third Year - First Semester',
-            'sequence_number' => 4,
+            'semester_number' => 4,
             'in_force' => true
         ]);
 
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '5 Sem',
             'name' => 'Fifth Semester',
-            'sequence_number' => 5,
+            'semester_number' => 5,
             'in_force' => false
         ]);
 
@@ -169,7 +169,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '6 Sem',
             'name' => 'Sixth Semester',
-            'sequence_number' => 6,
+            'semester_number' => 6,
             'in_force' => true
         ]);
 
@@ -177,7 +177,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '7 Sem',
             'name' => 'Seventh Semester',
-            'sequence_number' => 7,
+            'semester_number' => 7,
             'in_force' => true
         ]);
 
@@ -185,7 +185,7 @@ class DatabaseSeeder extends Seeder
             'regulation_id' => $r18ug_id,
             'short_name' => '8 Sem',
             'name' => 'Eighth Semester',
-            'sequence_number' => 8,
+            'semester_number' => 8,
             'in_force' => true
         ]);
 
@@ -245,7 +245,7 @@ class DatabaseSeeder extends Seeder
             'is_project' => false
         ]);
 
-        $s1825104 = DB::table('subjects')->insertGetId([
+        $s1805104 = DB::table('subjects')->insertGetId([
             'code' => '1825104',
             'short_name' => 'PPS',
             'name' => 'Programming for Problem Solving',
@@ -435,7 +435,7 @@ class DatabaseSeeder extends Seeder
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $bsc_id,
             'subject_offering_type_id' => $core_id,
-            'subjects' => json_encode(['1821101']),
+            // 'subjects' => json_encode(['1821101']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
             'sequence_number' => 1,
         ]);
@@ -445,7 +445,7 @@ class DatabaseSeeder extends Seeder
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $bsc_id,
             'subject_offering_type_id' => $core_id,
-            'subjects' => json_encode(['1823102']),
+            // 'subjects' => json_encode(['1823102']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
             'sequence_number' => 2,
         ]);
@@ -455,7 +455,7 @@ class DatabaseSeeder extends Seeder
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $hsmc_id,
             'subject_offering_type_id' => $core_id,
-            'subjects' => json_encode(['1824103']),
+            // 'subjects' => json_encode(['1824103']),
             'scheme' => json_encode(['lectures' => 2, 'tutorials' => 0, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 2]),
             'sequence_number' => 3,
         ]);
@@ -465,7 +465,7 @@ class DatabaseSeeder extends Seeder
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $esc_id,
             'subject_offering_type_id' => $core_id,
-            'subjects' => json_encode(['1805104']),
+            // 'subjects' => json_encode(['1805104']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 0, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 3]),
             'sequence_number' => 4,
         ]);
@@ -474,7 +474,7 @@ class DatabaseSeeder extends Seeder
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $bsc_id,
-            'subjects' => json_encode(['1823107']),
+            // 'subjects' => json_encode(['1823107']),
             'scheme' => json_encode(['lectures' => 0, 'tutorials' => 0, 'practicals' => 3, 'internal_marks' =>50, 'end_marks' => 50, 'credits' => 1.5]),
             'subject_offering_type_id' => $core_id,
             'sequence_number' => 5,
@@ -484,7 +484,7 @@ class DatabaseSeeder extends Seeder
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $esc_id,
-            'subjects' => json_encode(['1805108']),
+            // 'subjects' => json_encode(['1805108']),
             'scheme' => json_encode(['lectures' => 0, 'tutorials' => 0, 'practicals' => 4, 'internal_marks' =>50, 'end_marks' => 50, 'credits' => 2]),
             'subject_offering_type_id' => $core_id,
             'sequence_number' => 6,
@@ -494,7 +494,7 @@ class DatabaseSeeder extends Seeder
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_1_id,
             'subject_category_id' => $hsmc_id,
-            'subjects' => json_encode(['1824109']),
+            // 'subjects' => json_encode(['1824109']),
             'scheme' => json_encode(['lectures' => 0, 'tutorials' => 0, 'practicals' => 2, 'internal_marks' =>50, 'end_marks' => 50, 'credits' => 1]),
             'subject_offering_type_id' => $core_id,
             'sequence_number' => 7,
@@ -504,20 +504,44 @@ class DatabaseSeeder extends Seeder
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_2_id,
             'subject_category_id' => $bsc_id,
-            'subjects' => json_encode(['1821201']),
+            // 'subjects' => json_encode(['1821201']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
             'subject_offering_type_id' => $core_id,
             'sequence_number' => 1,
         ]);
 
-        $ce17_id = DB::table('instruction_schemes')->insertGetId([
+        $ce22_id = DB::table('instruction_schemes')->insertGetId([
             'specialization_id' => $ce_id,
             'semester_id' => $r18ug_2_id,
             'subject_category_id' => $hsmc_id,
-            'subjects' => json_encode(['182202']),
+            // 'subjects' => json_encode(['1822202']),
             'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
             'subject_offering_type_id' => $core_id,
             'sequence_number' => 2,
+        ]);
+
+        $ce23_id = DB::table('instruction_schemes')->insertGetId([
+            'specialization_id' => $ce_id,
+            'semester_id' => $r18ug_2_id,
+            'subject_category_id' => $hsmc_id,
+            // 'subjects' => json_encode(['182202']),
+            'scheme' => json_encode(['lectures' => 3, 'tutorials' => 1, 'practicals' => 0, 'internal_marks' =>30, 'end_marks' => 70, 'credits' => 4]),
+            'subject_offering_type_id' => $core_id,
+            'sequence_number' => 2,
+        ]);
+
+        /**
+         * table: instruction_scheme_subject
+         */
+        DB::table('instruction_scheme_subject')->insert([
+            ['instruction_scheme_id' => $ce11_id, 'subject_id' => $s1821101],
+            ['instruction_scheme_id' => $ce12_id, 'subject_id' => $s1823102],
+            ['instruction_scheme_id' => $ce13_id, 'subject_id' => $s1824103],
+            ['instruction_scheme_id' => $ce14_id, 'subject_id' => $s1805104],
+            ['instruction_scheme_id' => $ce15_id, 'subject_id' => $s1823107],
+            ['instruction_scheme_id' => $ce21_id, 'subject_id' => $s1821201],
+            ['instruction_scheme_id' => $ce22_id, 'subject_id' => $s1822202],
+            ['instruction_scheme_id' => $ce23_id, 'subject_id' => $s1802205],
         ]);
     }
 }

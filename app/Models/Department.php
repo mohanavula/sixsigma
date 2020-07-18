@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    public function subjects()
-    {
-        return $this->hasMany('App\Models\Subjects');
+    public function subjects(){
+        return $this->hasMany(Subjects::class);
+    }
+
+    public function specializations() {
+        return $this->hasMany(Specialization::class);
     }
 }
