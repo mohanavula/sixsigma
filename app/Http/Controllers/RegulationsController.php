@@ -29,6 +29,15 @@ class RegulationsController extends Controller
         }
     }
 
+    public function get_specializations($regulation_id)
+    {
+        if (is_numeric($regulation_id)) {
+            return Regulation::findOrFail($regulation_id)->program->specializations;
+        } else {
+            return Regulation::where('short_name', $regulation_id)->firstOrFail()->program->specializations;
+        }
+    }
+
     public function get_instruction_scheme($regulation_id, $semester_number = null)
     {
         if (is_numeric($regulation_id)) {

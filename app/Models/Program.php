@@ -15,4 +15,8 @@ class Program extends Model
     {
         return $this->hasMany('App\Models\Regulation');
     }
+
+    public function specializations() {
+        return $this->hasMany(Specialization::class);
+    }
 }
