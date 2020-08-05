@@ -29,6 +29,9 @@ Route::get('/regulations/{id}/specializations', 'RegulationsController@get_speci
 Route::get('regulations/{regulation_id}/scheme/{semester_id?}', 'RegulationsController@get_instruction_scheme');
 Route::get('regulations/{regulation_id}/subjects/{subject_code?}', 'RegulationsController@get_subjects');
 
+Route::get('/departments', 'DepartmentController@index');
+Route::get('/departments/{id}', 'DepartmentController@show');
+
 
 Route::get('/regulations/{regulation_code}/specializations', 'RegulationsController@specializations');
 Route::post('/regulations/{regulation_code}/specializations', 'RegulationsController@storeSpecializations');
