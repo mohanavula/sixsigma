@@ -118,6 +118,41 @@ class AcademicTables extends Migration
         });
 
         /**
+         * Table to model Syllabus.
+         */
+        Schema::create('syllabus', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->longText('objectives');
+            $table->longText('cos');
+            $table->longText('syllabus');
+            $table->longText('textbooks');
+            $table->longText('reference_books');
+            $table->unsignedBigInteger('subject_id');
+            $table->timestamps();
+            $table->foreign('subject_id', 'f_syllabus_subject_id')
+                ->references('id')
+                ->on('subjects')
+                ->onDelete('cascade');
+        });
+        
+        /**
+         * Table to model SubjectMeta. Eg. Reviews, ratings, resources
+         */
+        Schema::create('subject_meta', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->enum('category', ['review', 'rating', 'resource']);
+            $table->string('author_email');
+            $table->longText('data');
+            $table->unsignedBigInteger('subject_id');
+            $table->timestamps();
+            $table->foreign('subject_id', 'f_subject_meta_subject_id')
+                ->references('id')
+                ->on('subjects')
+                ->onDelete('cascade');
+        });
+
+
+        /**
          * Table to model Specialization (Branch). Eg: Civil Engineering
          */
         Schema::create('specializations', function (Blueprint $table) {

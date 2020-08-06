@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'HSD', 
             'name' => 'Humanities and Sciences Department', 
             'office_email' => 'office.hs@ksrmce.ac.in', 
-            'hod_email' => 'office.hs@ksrmce.ac.in'
+            'hod_email' => 'hod.hs@ksrmce.ac.in'
         ]);
         
         /**
@@ -125,6 +125,7 @@ class DatabaseSeeder extends Seeder
         /**
          * table: semesters
          */
+        // R18UG - B.Tech
         $r18ug_1_id = DB::table('semesters')->insertGetId([
             'regulation_id' => $r18ug_id,
             'short_name' => '1 Sem',
@@ -152,7 +153,7 @@ class DatabaseSeeder extends Seeder
         $r18ug_4_id = DB::table('semesters')->insertGetId([
             'regulation_id' => $r18ug_id,
             'short_name' => '4 Sem',
-            'name' => 'Third Year - First Semester',
+            'name' => 'Fourth Semester',
             'semester_number' => 4,
             'in_force' => true
         ]);
@@ -162,7 +163,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => '5 Sem',
             'name' => 'Fifth Semester',
             'semester_number' => 5,
-            'in_force' => false
+            'in_force' => true
         ]);
 
         $r18ug_6_id = DB::table('semesters')->insertGetId([
@@ -186,6 +187,39 @@ class DatabaseSeeder extends Seeder
             'short_name' => '8 Sem',
             'name' => 'Eighth Semester',
             'semester_number' => 8,
+            'in_force' => true
+        ]);
+
+        // R18PG - M.Tech
+        $r18pg_1_id = DB::table('semesters')->insertGetId([
+            'regulation_id' => $r18pg_id,
+            'short_name' => '1 Sem',
+            'name' => 'First Semester',
+            'semester_number' => 1,
+            'in_force' => true
+        ]);
+        
+        $r18pg_2_id = DB::table('semesters')->insertGetId([
+            'regulation_id' => $r18pg_id,
+            'short_name' => '2 Sem',
+            'name' => 'Second Semester',
+            'semester_number' => 2,
+            'in_force' => true
+        ]);
+        
+        $r18pg_3_id = DB::table('semesters')->insertGetId([
+            'regulation_id' => $r18pg_id,
+            'short_name' => '3 Sem',
+            'name' => 'Third Semester',
+            'semester_number' => 3,
+            'in_force' => true
+        ]);
+        
+        $r18pg_4_id = DB::table('semesters')->insertGetId([
+            'regulation_id' => $r18pg_id,
+            'short_name' => '4 Sem',
+            'name' => 'Fourth Semester',
+            'semester_number' => 4,
             'in_force' => true
         ]);
 
