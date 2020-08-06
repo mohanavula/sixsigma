@@ -41,35 +41,35 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'CED', 
             'name' => 'Civil Engineering Department', 
             'office_email' => 'office.ce@ksrmce.ac.in', 
-            'hod_email' => 'office.ce@ksrmce.ac.in'
+            'hod_email' => 'hod.ce@ksrmce.ac.in'
         ]);
 
         $eeed_id = DB::table('departments')->insertGetId([
             'short_name' => 'EEED', 
             'name' => 'Electrical and Electronics Engineering Department', 
             'office_email' => 'office.eee@ksrmce.ac.in', 
-            'hod_email' => 'office.eee@ksrmce.ac.in'
+            'hod_email' => 'hod.eee@ksrmce.ac.in'
         ]);
 
         $eced_id = DB::table('departments')->insertGetId([
             'short_name' => 'ECED', 
             'name' => 'Electronics and Communications Engineering Department', 
             'office_email' => 'office.ece@ksrmce.ac.in', 
-            'hod_email' => 'office.ece@ksrmce.ac.in'
+            'hod_email' => 'hod.ece@ksrmce.ac.in'
         ]);
 
         $med_id = DB::table('departments')->insertGetId([
             'short_name' => 'MED', 
             'name' => 'Mechanical Engineering Department', 
             'office_email' => 'office.me@ksrmce.ac.in', 
-            'hod_email' => 'office.me@ksrmce.ac.in'
+            'hod_email' => 'hod.me@ksrmce.ac.in'
         ]);
 
         $csed_id = DB::table('departments')->insertGetId([
             'short_name' => 'CSED', 
             'name' => 'Computer Science and Engineering Department', 
-            'office_email' => 'office.eee@ksrmce.ac.in', 
-            'hod_email' => 'office.eee@ksrmce.ac.in'
+            'office_email' => 'office.cse@ksrmce.ac.in', 
+            'hod_email' => 'hod.cse@ksrmce.ac.in'
         ]);
 
         $cri_id = DB::table('departments')->insertGetId([

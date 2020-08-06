@@ -107,7 +107,7 @@ class AcademicTables extends Migration
             $table->string('short_name', Constants::TITLE_SHORT_LENGTH)->unique();
             $table->string('name', Constants::TITLE_LENGTH);
             $table->unsignedBigInteger('department_id');
-            $table->boolean('is_theory')->default(false);
+            $table->boolean('is_theory')->default(true);
             $table->boolean('is_lab')->default(false);
             $table->boolean('is_project')->default(false);
             $table->timestamps();

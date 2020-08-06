@@ -29,6 +29,15 @@ class RegulationsController extends Controller
         }
     }
 
+    public function get_specializations($regulation_id)
+    {
+        if (is_numeric($regulation_id)) {
+            return Regulation::findOrFail($regulation_id)->program->specializations;
+        } else {
+            return Regulation::where('short_name', $regulation_id)->firstOrFail()->program->specializations;
+        }
+    }
+
     public function get_instruction_scheme($regulation_id, $semester_number = null)
     {
         if (is_numeric($regulation_id)) {
@@ -39,12 +48,12 @@ class RegulationsController extends Controller
 
         if (isset($semester_number)) {
             if ($semesters->contains('semester_number', '=', $semester_number))
-                return $semesters->firstWhere('semester_number', $semester_number)->instruction_scheme->load('subjects');
+                return $semesters->firstWhere('semester_number', $semester_number)->instruction_scheme->load('subject_category', 'subject_offering_type', 'semester', 'specialization', 'subjects');
             else
                 return response(["message" => "Scheme for semester: " . $semester_number . " not found"], 400);
         } else {
             return $semesters->map(function($s) {
-                return $s->instruction_scheme->load('subjects');
+                return $s->instruction_scheme->load('subject_category', 'subject_offering_type', 'semester', 'specialization', 'subjects');
             });
         }
     }

@@ -11,3 +11,17 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 PASSPORT_CLIENT_SECRET=ZyRiHBXkO4Z5mpsLcgQVfaw4rs9Slf7JIitDCJsR
+
+Personal access client created successfully.
+Client ID: 1
+Client secret: KrZyfeOL4mMKpT2FArj7qIsS4gQ6gmxoHuD9ouly
+Password grant client created successfully.
+Client ID: 2
+Client secret: NPI84I5lIaM99DUIsyw1vAT63vyUPq274p7Z1Ugz
+
+username: "Prof. Ansel Tromp",
+     email: "ischuster@example.com",
+     email_verified_at: "2020-07-19 16:51:52",
+     updated_at: "2020-07-19 16:51:52",
+     created_at: "2020-07-19 16:51:52",
+     id: 1,
