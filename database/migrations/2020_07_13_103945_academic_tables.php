@@ -103,7 +103,7 @@ class AcademicTables extends Migration
          */
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', Constants::TITLE_SHORT_LENGTH)->unique();
+            $table->string('code', Constants::TITLE_SHORT_LENGTH);
             $table->string('short_name', Constants::TITLE_SHORT_LENGTH)->unique();
             $table->string('name', Constants::TITLE_LENGTH);
             $table->unsignedBigInteger('department_id');
