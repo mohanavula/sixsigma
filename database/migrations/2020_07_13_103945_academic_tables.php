@@ -78,11 +78,12 @@ class AcademicTables extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('regulation_id')->index();
-            $table->string('short_name', Constants::TITLE_SHORT_LENGTH)->unique();
+            $table->string('short_name', Constants::TITLE_SHORT_LENGTH);
             $table->string('name', Constants::TITLE_LENGTH);
             $table->unsignedBigInteger('semester_number');
             $table->boolean('in_force')->default(false);
             $table->timestamps();
+            $table->unique(['regulation_id', 'short_name']);
             $table->foreign('regulation_id', 'f_semesters_regulation_id')
                 ->references('id')
                 ->on('regulations')
@@ -122,6 +123,7 @@ class AcademicTables extends Migration
          */
         Schema::create('syllabus', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->longText('excerpt');
             $table->longText('objectives');
             $table->longText('cos');
             $table->longText('syllabus');
@@ -236,6 +238,14 @@ class AcademicTables extends Migration
      */
     public function down()
     {
+        Schema::table('syllabus', function(Blueprint $table) {
+            $table->dropForeign('f_syllabus_subject_id');
+        });
+        
+        Schema::table('subject_meta', function(Blueprint $table) {
+            $table->dropForeign('f_subject_meta_subject_id');
+        });
+
         Schema::table('instruction_scheme_subject', function (Blueprint $table) {
             $table->dropForeign('f_instruction_scheme_subject_instruction_scheme_id');
             $table->dropForeign('f_instruction_scheme_subject_subject_id');
@@ -268,6 +278,8 @@ class AcademicTables extends Migration
             $table->dropForeign('f_programs_program_level_id');
         });
         
+        Schema::dropIfExists('syllabus');
+        Schema::dropIfExists('subject_meta');
         Schema::dropIfExists('instruction_scheme_subject');
         Schema::dropIfExists('instruction_schemes');
         Schema::dropIfExists('subject_catgories');
