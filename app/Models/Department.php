@@ -13,4 +13,8 @@ class Department extends Model
     public function specializations() {
         return $this->hasMany(Specialization::class);
     }
+
+    public function faculties() {
+        return $this->hasMany(Faculty::class);
+    }
 }

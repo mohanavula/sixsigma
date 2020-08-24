@@ -29,3 +29,14 @@ username: "Prof. Ansel Tromp",
 HTML online editor
 https://html-online.com/editor/
 
+
+
+Excel:
+package:  Maatwebsite/Laravel-Excel
+GitHub: https://github.com/Maatwebsite/Laravel-Excel
+Steps:
+
+composer require maatwebsite/excel -> installation
+Maatwebsite\Excel\ExcelServiceProvider::class, -> add this to config/app.php in 'providers' section
+'Excel' => Maatwebsite\Excel\Facades\Excel::class, -> add this to config/app.php 'aliases' section
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" -> to publish config/excel.php

@@ -24,6 +24,10 @@ class Subject extends Model
         return $this->hasMany(SubjectMeta::class);
     }
 
+    public function exam_schedules() {
+        return $this->hasMany(ExamSchedule::class);
+    }
+
     public function rating_summary() {
         $ratings = DB::table('subject_meta')->where([
             ['subject_id', '=', $this->id],

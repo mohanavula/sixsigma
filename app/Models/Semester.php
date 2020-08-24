@@ -15,5 +15,10 @@ class Semester extends Model
     {
         return $this->hasMany('App\Models\InstructionScheme');
     }
+
+    public function exams() {
+        return $this->hasMany(Exam::class);
+    }
+
 }
  
