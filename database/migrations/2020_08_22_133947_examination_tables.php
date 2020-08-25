@@ -53,15 +53,15 @@ class ExaminationTables extends Migration
          */
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('regdno', Constants::TITLE_SHORT_LENGTH)->unique();
+            $table->string('regdno', Constants::REGDNO_LENGTH)->unique();
             $table->string('surname', Constants::TITLE_LENGTH);
             $table->string('given_name', Constants::TITLE_LENGTH);
             $table->string('email', Constants::EMAIL_LENGTH)->unique();
-            $table->string('phone', Constants::PHONE_LENGTH)->unique();
+            $table->string('phone', Constants::PHONE_LENGTH)->unique()->nullable();
             $table->year('join_year');
-            $table->enum('social_cateory', ['OC', 'BC-A', 'BC-B', 'BC-C', 'BC-D', 'BC-E', 'EWS', 'SC', 'ST', 'OTHER']);
+            $table->enum('social_category', ['OC', 'BC-A', 'BC-B', 'BC-C', 'BC-D', 'BC-E', 'EWS', 'SC', 'ST', 'OTHER']);
             $table->enum('admission_category', ['CONVENER', 'MANAGEMENT', 'OTHER']);
-            $table->enum('residency', ['HOSTEL', 'DAYS']);
+            $table->enum('residency', ['HOSTEL', 'DAYS'])->nullable();
             $table->enum('gender', ['FEMALE', 'MALE','OTHER']);
             $table->boolean('is_lateral_entry')->default(false);
             $table->timestamps();
@@ -103,7 +103,7 @@ class ExaminationTables extends Migration
         /**
          * Table to model AcademicClassSection. Eg: 2020-21-R18UG-5-Sem-CE-A
          */
-        Schema::create('acaemic_class_sections', function (Blueprint $table) {
+        Schema::create('academic_class_sections', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('academic_class_id');
             $table->string('section', 1);

@@ -602,18 +602,18 @@ class DatabaseSeeder extends Seeder
             'in_force' => true
         ]);
 
-        $ede_id = DB::table('specializations')->insertGetId([
-            'short_name' => 'ECE',
-            'name' => 'Electronics and Comminications Engineering',
-            'department_id' => $eced_id,
-            'program_id' => $btech_id,
-            'in_force' => true
-        ]);
-
         $me_id = DB::table('specializations')->insertGetId([
             'short_name' => 'ME',
             'name' => 'Mechanical Engineering',
             'department_id' => $med_id,
+            'program_id' => $btech_id,
+            'in_force' => true
+        ]);
+
+        $ede_id = DB::table('specializations')->insertGetId([
+            'short_name' => 'ECE',
+            'name' => 'Electronics and Comminications Engineering',
+            'department_id' => $eced_id,
             'program_id' => $btech_id,
             'in_force' => true
         ]);
