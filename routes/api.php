@@ -37,6 +37,8 @@ Route::post('/subjects/{id}/ratings', 'SubjectController@add_rating');
 Route::get('/departments', 'DepartmentController@index');
 Route::get('/departments/{id}', 'DepartmentController@show');
 
+Route::get('/students/{key}', 'StudentController@get_students');
+
 
 Route::get('/regulations/{regulation_code}/specializations', 'RegulationsController@specializations');
 Route::post('/regulations/{regulation_code}/specializations', 'RegulationsController@storeSpecializations');
