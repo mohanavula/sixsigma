@@ -44,5 +44,6 @@ Route::get('/regulations/{regulation_code}/specializations', 'RegulationsControl
 Route::post('/regulations/{regulation_code}/specializations', 'RegulationsController@storeSpecializations');
 
 Route::post('/contactus/sendemail', 'EmailController@send_contact_us_email');
+Route::post('/sendemail', 'EmailController@send_standard_email');
 
 Route::post('/import/marks', 'ImportMarksController@import_marks');

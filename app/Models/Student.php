@@ -13,7 +13,7 @@ class Student extends Model
     }
 
     public function regulation() {
-        return $this->belingsTo(Regulation::class);
+        return $this->belongsTo(Regulation::class);
     }
     
     public function exam_regiatration_marks() {

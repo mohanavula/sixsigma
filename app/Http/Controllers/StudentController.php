@@ -12,27 +12,25 @@ class StudentController extends Controller
         
         // email
         if (filter_var($key, FILTER_VALIDATE_EMAIL)) {
-            return Student::where('email', $key)->firstOrFail();
+            return Student::with(['regulation', 'regulation.program', 'specialization'])->where('email', $key)->firstOrFail();
         }
 
         // id
         if (filter_var($key, FILTER_VALIDATE_INT)) {
-            return Student::findOrFail($key);
+            return Student::with(['regulation', 'regulation.program', 'specialization'])->findOrFail($key);
         }
 
         // regdno
         if (strlen($key) == 10 && substr(strtoupper($key), 2, 2) == '9Y') {
-            return Student::where('regdno', $key)->firstOrFail();
+            return Student::with(['regulation', 'regulation.program', 'specialization'])->where('regdno', $key)->firstOrFail();
         }
 
         // surname and given_name
-        $students = DB::table('students')
+        $students = Student::with(['regulation', 'regulation.program', 'specialization']) 
             ->where('surname', 'like', '%' . $key . '%')
             ->orWhere('given_name', 'like', '%' . $key . '%')
             ->latest()
             ->paginate(20);
-            // ->limit(100)
-            // ->get();
         if ($students->count() > 0) {
             return $students;
         } else {
