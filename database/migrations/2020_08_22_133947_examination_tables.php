@@ -97,7 +97,7 @@ class ExaminationTables extends Migration
                 ->on('specializations')
                 ->onDelete('cascade');
             $table->timestamps();
-            $table->unique(['semester_id', 'specialization_id']);
+            $table->unique(['semester_id', 'specialization_id', 'academic_year']);
         });
 
         /**

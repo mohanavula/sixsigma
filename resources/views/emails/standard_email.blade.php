@@ -67,11 +67,6 @@
             <td class="title">sixSigma</td>
         </tr>
         <tr class="content">
-            <td style="padding-bottom: 5px">
-                Hi {{ $email['name'] }}<br>
-            </td>
-        </tr>
-        <tr class="content">
             <td>
                 <span>{{ $email['body']}}</span>
             </td>

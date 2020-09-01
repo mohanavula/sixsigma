@@ -39,6 +39,9 @@ Route::get('/departments/{id}', 'DepartmentController@show');
 
 Route::get('/students/{key}', 'StudentController@get_students');
 
+Route::get('/academics/classes', 'AcademicsController@get_classes');
+Route::post('/academics/classes', 'AcademicsController@store_classes_sections');
+
 
 Route::get('/regulations/{regulation_code}/specializations', 'RegulationsController@specializations');
 Route::post('/regulations/{regulation_code}/specializations', 'RegulationsController@storeSpecializations');

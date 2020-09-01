@@ -9,7 +9,7 @@ class RegulationsController extends Controller
 {
     public function index()
     {
-        return Regulation::with('program')->get();
+        return Regulation::with(['program', 'semesters', 'program.specializations'])->get();
     }
 
     public function get_regulation($regulation_id) {

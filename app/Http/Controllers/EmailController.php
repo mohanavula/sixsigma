@@ -38,7 +38,6 @@ class EmailController extends Controller
             'to' => 'required|email|regex:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',
             'reply_to' => 'required|email|regex:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',
             'subject' => 'required',
-            'name' => 'required',
             'body' => 'required'
         ]);
         
@@ -46,7 +45,6 @@ class EmailController extends Controller
             'to' => $request->to,
             'reply_to' => $request->reply_to,
             'subject' => $request->subject,
-            'name' => $request->name,
             'body' => $request->body
         ];
 
