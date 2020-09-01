@@ -14,9 +14,9 @@ class RegulationsController extends Controller
 
     public function get_regulation($regulation_id) {
         if (is_numeric($regulation_id)) {
-            return Regulation::with('program')->findOrFail($regulation_id);
+            return Regulation::with(['program', 'semesters', 'program.specializations'])->findOrFail($regulation_id);
         } else {
-            return Regulation::with('program')->where('short_name', $regulation_id)->firstOrFail();
+            return Regulation::with(['program', 'semesters', 'program.specializations'])->where('short_name', $regulation_id)->firstOrFail();
         }
     }
 
