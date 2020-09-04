@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Regulation;
 
-class RegulationsController extends Controller
+class RegulationController extends Controller
 {
     public function index()
     {
@@ -48,12 +48,12 @@ class RegulationsController extends Controller
 
         if (isset($semester_number)) {
             if ($semesters->contains('semester_number', '=', $semester_number))
-                return $semesters->firstWhere('semester_number', $semester_number)->instruction_scheme->load('subject_category', 'subject_offering_type', 'semester', 'specialization', 'subjects');
+                return $semesters->firstWhere('semester_number', $semester_number)->instruction_scheme->load('subject_category', 'subject_offering_type', 'subjects');
             else
                 return response(["message" => "Scheme for semester: " . $semester_number . " not found"], 400);
         } else {
             return $semesters->map(function($s) {
-                return $s->instruction_scheme->load('subject_category', 'subject_offering_type', 'semester', 'specialization', 'subjects');
+                return $s->instruction_scheme->load('subject_category', 'subject_offering_type', 'subjects');
             });
         }
     }

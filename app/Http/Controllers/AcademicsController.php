@@ -5,11 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AcademicClass;
 use App\Models\AcademicClassSection;
+use App\Models\Exam;
+use App\Models\InstructionScheme;
 
 class AcademicsController extends Controller
 {
     public function get_classes(Request $request) {
         return AcademicClass::with(['sections'])->get();
+    }
+
+    public function get_exams(Request $request) {
+        return Exam::with(['exam_schedules'])->all();
+    }
+
+    public function store_exams(Request $request) {
+        $exams = $request->exams;
+        foreach($exams as $exam) {
+            Exam::create([
+                'short_name' => substr(uniqid(), 0, 8), //  $exam['short_name'],
+                'name' => $exam['name'],
+                'academic_year' => $exam['academic_year'],
+                'start_date' => date('Y-m-d', strtotime(str_replace('-','/', $exam['start_date']))),
+                'end_date' => date('Y-m-d', strtotime(str_replace('-','/', $exam['end_date']))),
+                'exam_category' => $exam['exam_category'],
+                'semester_id' => $exam['semester_id'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     public function store_classes_sections(Request $request) {
@@ -55,5 +78,9 @@ class AcademicsController extends Controller
                 }
             }
         }
+    }
+
+    public function get_instruction_scheme(Request $request, $semester_id) {
+        return InstructionScheme::with(['subjects'])->where('semester_id', $semester_id)->get();
     }
 }
